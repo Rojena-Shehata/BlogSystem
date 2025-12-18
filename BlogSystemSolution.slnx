@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/ApplicationCoreLayer/">
+    <Project Path="BlogSystem.Domain/BlogSystem.Domain.csproj" />
+    <Project Path="BlogSystem.Services/BlogSystem.Services.csproj" />
+    <Project Path="BlogSystem.ServicesAbstraction/BlogSystem.ServicesAbstraction.csproj" />
+  </Folder>
+  <Folder Name="/InfratstructureLayer/">
+    <Project Path="BlogSystem.Presistence/BlogSystem.Presistence.csproj" />
+  </Folder>
+  <Folder Name="/PresentationLayer/">
+    <Project Path="BlogSystem.Presentation/BlogSystem.Presentation.csproj" />
+    <Project Path="BlogSystem.Web/BlogSystem.Web.csproj" />
+  </Folder>
+  <Project Path="BlogSystem.Shared/BlogSystem.Shared.csproj" />
+</Solution>
