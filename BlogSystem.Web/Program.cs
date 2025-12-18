@@ -1,4 +1,9 @@
 
+using BlogSystem.Domain.Entities;
+using BlogSystem.Presistence.Data.DbContexts;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 namespace BlogSystem.Web
 {
     public class Program
@@ -12,6 +17,17 @@ namespace BlogSystem.Web
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+
+
+            //dbContext
+            builder.Services.AddDbContext<BlogDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+            //Identity
+            builder.Services.AddIdentityCore<ApplicationUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<BlogDbContext>();    
 
             var app = builder.Build();
 
