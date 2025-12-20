@@ -1,6 +1,10 @@
 
+using BlogSystem.Domain.Contracts;
 using BlogSystem.Domain.Entities;
 using BlogSystem.Presistence.Data.DbContexts;
+using BlogSystem.Presistence.Repositories;
+using BlogSystem.Services.MapsterConfig;
+using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +32,12 @@ namespace BlogSystem.Web
             builder.Services.AddIdentityCore<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BlogDbContext>();    
+
+            //services
+            builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+            //mapster
+            builder.Services.AddMapster();
+            MapsterConfig.Configure();
 
             var app = builder.Build();
 
