@@ -1,4 +1,4 @@
-﻿using BlogSystem.Domain.Contrcts;
+﻿using BlogSystem.Domain.Contracts;
 using BlogSystem.Domain.Entities;
 using BlogSystem.Presistence.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
@@ -11,19 +11,16 @@ using System.Threading.Tasks;
 
 namespace BlogSystem.Presistence.Repositories
 {
-    public class GenericRepository <TEntity, TKey> : IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TKey>
+    public class GenericRepository <TEntity, TKey>(BlogDbContext _dbContext) : IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TKey>
     {
-        private readonly BlogDbContext _dbContext;
+        private DbSet<TEntity> _dbSet=_dbContext.Set<TEntity>();
 
-        public GenericRepository(BlogDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+
 
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await _dbContext.Set<TEntity>().ToListAsync();
+            return await _dbContext.Set<TEntity>().AsNoTracking().ToListAsync();
         }
 
         public async Task<TEntity?> GetByIdAsync(TKey id)
@@ -44,6 +41,16 @@ namespace BlogSystem.Presistence.Repositories
         public void Update(TEntity entity)
         {
             _dbContext.Set<TEntity>().Update(entity);
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync(ISpecification<TEntity, TKey> specification)
+        {
+            return await _dbSet.GetQuery<TEntity, TKey>(specification).ToListAsync();
+        }
+
+        public async Task<TEntity?> GetByIdAsync(ISpecification<TEntity, TKey> specification)
+        {
+            return await _dbSet.GetQuery(specification).FirstOrDefaultAsync();
         }
     }
 }

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlogSystem.Domain.Contrcts
+namespace BlogSystem.Domain.Contracts
 {
     public interface IUnitOfWork
     {
-        IGenericRepository<TEntity, Tkey> GetRepository<TEntity,Tkey>(TEntity entity) where TEntity:BaseEntity<Tkey>;
+        IGenericRepository<TEntity, Tkey> GetRepository<TEntity,Tkey>() where TEntity:BaseEntity<Tkey>;
 
         Task<int> SaveChangesAsync();
     }
