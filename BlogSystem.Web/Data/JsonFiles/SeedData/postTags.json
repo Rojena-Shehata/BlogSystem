@@ -1,0 +1,23 @@
+[
+  {
+    "PostId": 1,
+    "TagId": 9
+  },
+  {
+    "PostId": 1,
+    "TagId": 10
+  },
+  {
+    "PostId": 1,
+    "TagId": 11
+  },
+  {
+    "PostId": 2,
+    "TagId": 10
+  },
+  {
+    "PostId": 2,
+    "TagId": 12
+  }
+  
+]

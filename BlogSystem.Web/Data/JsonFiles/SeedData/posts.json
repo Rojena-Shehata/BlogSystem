@@ -1,0 +1,28 @@
+[
+  {
+    "Title": "Building a Blog with ASP.NET Core",
+    "Content": "This post explains how to build a blog system using ASP.NET Core and Clean Architecture.",
+    "AuthorId": "fddcc663-9f75-42ee-ade5-8e070bc885e3",
+    "CreatedAt": "2025-01-10T10:30:00Z",
+    "UpdatedAt": "2025-01-10T10:30:00Z",
+    "Status": 1,
+    "CategoryId": 2
+  },
+  {
+    "Title": "Why Clean Architecture Matters",
+    "Content": "Clean Architecture helps you build scalable and maintainable applications.",
+    "AuthorId": "fae9d0e2-6a09-4c13-b9aa-c206ec7d5927",
+    "CreatedAt": "2025-01-12T14:00:00Z",
+    "Status": 0,
+    "CategoryId": 2
+  },
+  {
+    "Title": "Improving Developer Productivity",
+    "Content": "Tips and habits to improve productivity as a software developer.",
+    "AuthorId": "fae9d0e2-6a09-4c13-b9aa-c206ec7d5927",
+    "CreatedAt": "2025-01-08T08:00:00Z",
+    "UpdatedAt": "2025-01-09T08:45:00Z",
+    "Status": 2,
+    "CategoryId": 3
+  }
+]

@@ -3,11 +3,7 @@ using BlogSystem.Domain.Entities.Content;
 using BlogSystem.ServicesAbstraction;
 using BlogSystem.Shared.DTOs;
 using MapsterMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BlogSystem.Services
 {
