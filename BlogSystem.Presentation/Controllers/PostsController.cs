@@ -24,5 +24,13 @@ namespace BlogSystem.Presentation.Controllers
             _logger.LogInformation($"Request time: {sw.ElapsedMilliseconds} ms");
             return Ok(posts);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PostDTO>> GetPostById(int id)
+        {
+           var post=await _postService.GetPostById(id);
+            return HandleResult<PostDTO>(post);
+        }
+
     }
 }

@@ -17,6 +17,12 @@ namespace BlogSystem.Services.Specifications.PostSpecifications
             AddInclude(post => post.Author);
             AddInclude(post => post.Tags);
         }
+        internal PostWithTagAndCategoryAndAuthor(int postId) : base(post=>post.Id==postId)
+        {
+            AddInclude(post => post.Category);
+            AddInclude(post => post.Author);
+            AddInclude(post => post.Tags);
+        }
 
         private static Expression<Func<Post, bool>> CreateCriteria(PostQueryParameters queryParameters)
         {

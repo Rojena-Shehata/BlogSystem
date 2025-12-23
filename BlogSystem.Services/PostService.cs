@@ -3,6 +3,7 @@ using BlogSystem.Domain.Entities;
 using BlogSystem.Domain.Entities.Content;
 using BlogSystem.Services.Specifications.PostSpecifications;
 using BlogSystem.ServicesAbstraction;
+using BlogSystem.Shared.CommonResult;
 using BlogSystem.Shared.DTOs;
 using MapsterMapper;
 using Microsoft.Extensions.Logging;
@@ -40,6 +41,16 @@ namespace BlogSystem.Services
             sw.Stop();
             _logger.LogInformation($"time for Mapping posts:{sw.ElapsedMilliseconds}==============");
             return posts;
+        }
+
+        public async Task<Result<PostDTO>> GetPostById(int postId)
+        {
+            var spec = new PostWithTagAndCategoryAndAuthor(postId);
+          var post= await _unitOfWork.GetRepository<Post,int>().GetByIdAsync(spec);
+            if (post is null)
+                return Error.NotFound("Post.NotFound",$"Post With Id:{postId} Was Not Found!");
+               return _mapper.Map<PostDTO>(post);
+           
         }
     }
 }
