@@ -2,7 +2,7 @@
 using BlogSystem.Domain.Entities;
 using BlogSystem.Domain.Entities.Content;
 using BlogSystem.Presistence.Data.DbContexts;
-using BlogSystem.Shared;
+using BlogSystem.Shared.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

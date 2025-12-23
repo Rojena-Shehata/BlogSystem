@@ -1,4 +1,5 @@
-﻿using BlogSystem.Domain.Entities.Content;
+﻿using BlogSystem.Domain.Entities;
+using BlogSystem.Domain.Entities.Content;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -26,6 +27,11 @@ namespace BlogSystem.Presistence.Data.Configurations
                 .WithMany()
                 .HasForeignKey(x => x.CategoryId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            //post+Tags
+            builder.HasMany(x=>x.Tags)
+                .WithMany(x=>x.Posts)
+                .UsingEntity<PostTag>();
         }
     }
 }

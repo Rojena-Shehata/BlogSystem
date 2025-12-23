@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,9 +49,24 @@ namespace BlogSystem.Presistence.Repositories
             return await _dbSet.GetQuery<TEntity, TKey>(specification).ToListAsync();
         }
 
+        public async Task<IEnumerable<TResult>> GetAllAsync<TResult>(IProjectionSpecification<TEntity, TKey, TResult> specification)
+        {
+            return await _dbSet.GetQuery<TEntity, TKey,TResult>(specification).ToListAsync();
+        }
         public async Task<TEntity?> GetByIdAsync(ISpecification<TEntity, TKey> specification)
         {
             return await _dbSet.GetQuery(specification).FirstOrDefaultAsync();
         }
+
+        public void ExplicitLoading<TProperty>(TEntity entity,Expression<Func<TEntity, IEnumerable<TProperty>>> propertyNavigation) where TProperty : class
+        {
+            _dbContext.Entry(entity).Collection(propertyNavigation).Load();
+        }
+
+        public void ExplicitLoading<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> referencePropertyNavigation) where TProperty : class
+        {
+            _dbContext.Entry(entity).Reference(referencePropertyNavigation).Load();
+        }
+
     }
 }

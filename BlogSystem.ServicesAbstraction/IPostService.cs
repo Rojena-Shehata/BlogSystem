@@ -9,6 +9,6 @@ namespace BlogSystem.ServicesAbstraction
 {
     public interface IPostService
     {
-        public Task<IEnumerable<PostDTO>> GetAllPosts();
+        public Task<IEnumerable<PostDTO>> GetAllPosts(PostQueryParameters queryParameters);
     }
 }

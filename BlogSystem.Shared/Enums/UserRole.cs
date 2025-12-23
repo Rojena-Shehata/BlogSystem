@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlogSystem.Shared
+namespace BlogSystem.Shared.Enums
 {
     public enum UserRole
     {

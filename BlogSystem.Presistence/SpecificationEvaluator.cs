@@ -20,13 +20,60 @@ namespace BlogSystem.Presistence
                 {
                     query = query.Where(specification.Criteria);
                 }
-
-                if(specification.InCludeExpression is not null)
+                if (specification.AsNoTracking)
                 {
-                    query = query.Include(specification.InCludeExpression);
+                    query=query.AsNoTracking();
+                }
+                if(specification.InCludeExpressions is not null)
+                {
+                    if (specification.InCludeExpressions?.Count > 1)
+                    {
+                        query = query.AsSplitQuery();
+                    }
+                    foreach (var inCludeExpression in specification.InCludeExpressions)
+                    {
+                        query = query.Include(inCludeExpression);
+
+                    }
                 }
             }
              return query;
         }
+        public static IQueryable<TResult> GetQuery<TEntity,Tkey,TResult>(this IQueryable<TEntity> inputQueryable, IProjectionSpecification<TEntity,Tkey, TResult> specification)where TEntity : BaseEntity<Tkey>
+        {
+            var query = inputQueryable;
+            if (specification is not null)
+            {
+                //criteria
+                if(specification.Criteria is not null)
+                {
+                    query = query.Where(specification.Criteria);
+                }
+                //AsNoTracking
+                if (specification.AsNoTracking)
+                {
+                    query = query.AsNoTracking();
+                }
+                //AsNoTracking
+                if (specification.InCludeExpressions is not null&&specification.Selector is null)
+                {
+                    if (specification.InCludeExpressions?.Count > 1)
+                    {
+                        query = query.AsSplitQuery();
+                    }
+                   
+                    foreach (var inCludeExpression in specification.InCludeExpressions)
+                    {
+                        query = query.Include(inCludeExpression);
+
+                    }
+                }
+            }
+            query = query.AsSplitQuery();
+                   var newQuery=query.Select(specification.Selector);
+                    return newQuery;
+                
+                  }
+
     }
 }

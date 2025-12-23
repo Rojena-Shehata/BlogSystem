@@ -13,13 +13,17 @@ namespace BlogSystem.Presistence.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<PostTag> builder)
         {
-            builder.HasOne(x => x.Post)
-                .WithMany(x => x.PostTags)
-                .HasForeignKey(x => x.PostId);
 
-            builder.HasOne(x => x.Tag)
-                .WithMany()
-                .HasForeignKey(x => x.TagId);
+            builder.HasIndex(postTag => postTag.TagId);
+
+            builder.HasIndex(postTag => postTag.PostId);
+            //    builder.HasOne(x => x.Post)
+            //        .WithMany(x => x.PostTags)
+            //        .HasForeignKey(x => x.PostId);
+
+            //    builder.HasOne(x => x.Tag)
+            //        .WithMany()
+            //        .HasForeignKey(x => x.TagId);
         }
     }
 }

@@ -11,8 +11,9 @@ namespace BlogSystem.Domain.Contracts
     public interface ISpecification<TEntity,TKey> where TEntity : BaseEntity<TKey>
     {
         Expression<Func<TEntity,bool>> Criteria {  get; }
-        Expression<Func<TEntity,object>> InCludeExpression {  get; }
-        
+        ICollection<Expression<Func<TEntity, object>>> InCludeExpressions { get;  }
+        bool AsNoTracking { get; set; }
+
 
     }
 }

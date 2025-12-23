@@ -102,7 +102,7 @@ namespace BlogSystem.Presistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("BlogSystem.Domain.Entities.Content.Comment", b =>
@@ -134,7 +134,7 @@ namespace BlogSystem.Presistence.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("BlogSystem.Domain.Entities.Content.Post", b =>
@@ -177,7 +177,7 @@ namespace BlogSystem.Presistence.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("BlogSystem.Domain.Entities.PostTag", b =>
@@ -200,7 +200,7 @@ namespace BlogSystem.Presistence.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("PostTags");
+                    b.ToTable("PostTags", (string)null);
                 });
 
             modelBuilder.Entity("BlogSystem.Domain.Entities.Tag", b =>
@@ -218,7 +218,7 @@ namespace BlogSystem.Presistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

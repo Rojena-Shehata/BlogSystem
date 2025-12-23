@@ -3,7 +3,9 @@ using BlogSystem.Domain.Entities;
 using BlogSystem.Presistence.Data.DbContexts;
 using BlogSystem.Presistence.Data.SeedData;
 using BlogSystem.Presistence.Repositories;
+using BlogSystem.Services;
 using BlogSystem.Services.MapsterConfig;
+using BlogSystem.ServicesAbstraction;
 using BlogSystem.Web.Extensions;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
@@ -42,8 +44,9 @@ namespace BlogSystem.Web
             //services
             builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
             builder.Services.AddScoped<IDataInitializer, DataInitializer>();
+            builder.Services.AddScoped<IPostService, PostService>();
 
-
+             
             //mapster
             builder.Services.AddMapster();
             MapsterConfig.Configure();

@@ -19,11 +19,13 @@ namespace BlogSystem.Services.Specifications
 
         public Expression<Func<TEntity, bool>> Criteria {  get;private set; }
 
-        public Expression<Func<TEntity, object>> InCludeExpression {  get;private set; }
+        public ICollection<Expression<Func<TEntity, object>>> InCludeExpressions { get; private set; } = [];
+
+        public bool AsNoTracking { get; set; } = true;
 
         protected void AddInclude(Expression<Func<TEntity, object>> inCludeExpression)
         {
-            InCludeExpression = inCludeExpression;
+            InCludeExpressions.Add(inCludeExpression);
         }
     }
 }

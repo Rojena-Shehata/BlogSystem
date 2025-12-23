@@ -13,7 +13,8 @@ namespace BlogSystem.Domain.Entities.Content
         public PostStatus Status { get; set; }
         public int CategoryId { get; set; }//Fk
         public Category Category { get; set; } = default!;
-        public ICollection<PostTag>? PostTags { get; set; } 
+        public ICollection<PostTag> PostTags { get; set; } = [];
+        public ICollection<Tag> Tags { get; set; } = [];
         public ICollection<Comment> Comments { get; set; } = [];
     }
 }
