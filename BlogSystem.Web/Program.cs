@@ -6,6 +6,7 @@ using BlogSystem.Presistence.Repositories;
 using BlogSystem.Services;
 using BlogSystem.Services.MapsterConfig;
 using BlogSystem.ServicesAbstraction;
+using BlogSystem.Web.CustomMiddlewares;
 using BlogSystem.Web.Extensions;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
@@ -46,7 +47,11 @@ namespace BlogSystem.Web
             builder.Services.AddScoped<IDataInitializer, DataInitializer>();
             builder.Services.AddScoped<IPostService, PostService>();
 
-             
+            //register :IExceptionHandler
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+            ////Register IProblemDetailsService
+            builder.Services.AddProblemDetails();
+
             //mapster
             builder.Services.AddMapster();
             MapsterConfig.Configure();
@@ -54,6 +59,9 @@ namespace BlogSystem.Web
             var app = builder.Build();
 
            await app.SeedDataAsync(builder.Configuration,app.Environment);
+
+            //IExceptionHandler
+            app.UseExceptionHandler();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

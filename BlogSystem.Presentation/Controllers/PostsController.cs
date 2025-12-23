@@ -28,6 +28,7 @@ namespace BlogSystem.Presentation.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<PostDTO>> GetPostById(int id)
         {
+            throw new NotImplementedException();
            var post=await _postService.GetPostById(id);
             return HandleResult<PostDTO>(post);
         }
